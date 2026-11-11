@@ -6,6 +6,17 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayout,
+    children: [
+      {
+        path: '',
+        redirectTo: 'oglasi',
+        pathMatch: 'full'
+      },
+      {
+        path: 'oglasi',
+        loadChildren: () => import('./features/jobs/jobs-module').then(m => m.JobsModule)
+      }
+    ]
   }
 ];
 
