@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayout } from './core/layout/components/main-layout/main-layout';
+import { AuthLayoutComponent } from './core/layout/components/auth-layout/auth-layout.component';
+import { AuthGuard } from './shared/guards/auth-guard';
 
 const routes: Routes = [
   {
@@ -9,14 +11,20 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'oglasi',
+        redirectTo: 'jobs',
         pathMatch: 'full'
       },
       {
-        path: 'oglasi',
+        path: 'jobs',
+        canActivateChild: [AuthGuard],
         loadChildren: () => import('./features/jobs/jobs-module').then(m => m.JobsModule)
-      }
+      },
     ]
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./features/auth/auth-module').then(m => m.AuthModule),
+    component: AuthLayoutComponent,
   }
 ];
 
