@@ -6,20 +6,36 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" [routerLinkActiveOptions]="{exact:
-true}" routerLinkActive="active" routerLink="jobs">Jobs</a>
-        </li>
-  
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="jobs/saved-jobs">Saved jobs</a>
-        </li>
+        @if (role == "User")
+        {
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActiveOptions]="{exact:
+            true}" routerLinkActive="active" routerLink="jobs">Jobs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="jobs/saved-jobs">Saved jobs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="applications">My applications</a>
+          </li>
+        }
+        @if (role == "Company")
+        {
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="jobs/my-jobs">My jobs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="jobs/create-job">Create job</a>
+          </li>
+        }
+        
         <li class="nav-item">
           <a class="nav-link" href="#">Moj profil</a>
         </li>
       </ul>
     </div>
-    <div>
+      <div>
+        <span class="me-3">Welcome, {{ username }}</span>
         <button (click)="logout()" class="btn btn-primary">Logout</button>
       </div>
   </div>

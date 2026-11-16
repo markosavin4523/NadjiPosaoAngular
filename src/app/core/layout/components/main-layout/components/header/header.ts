@@ -9,9 +9,14 @@ import { AuthService } from '../../../../../../shared/business-logic/auth.servic
   styleUrl: './header.scss',
 })
 export class Header {
-  constructor(
-    private authService: AuthService,
-  ) {}
+
+  role: string | null;
+  username: string | null;
+  constructor(private authService: AuthService) {
+    this.role = this.authService.getUserRole();
+    this.username = this.authService.getJwtTokenData()?.Username ?? null;
+  }
+  
 
   logout(): void {
     this.authService.logout();

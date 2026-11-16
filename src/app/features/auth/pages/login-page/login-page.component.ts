@@ -20,6 +20,7 @@ export class LoginPageComponent {
   ){}
 
   hidePassword = signal(true);
+  errorMessage = signal<string | null>(null);
 
   form : any = new FormGroup(
     {
@@ -36,13 +37,20 @@ export class LoginPageComponent {
 
       this.requestService.login(credentials).subscribe({
         next: (response) => {
-          localStorage.setItem("jwtToken", response.jwtToken);
+          this.authService.setJwtToken(response.token);
           this.router.navigate(['/']);
+          
         },
         error: (error) => {
           console.error('Login failed:', error);
+          this.resetForm();
+          this.errorMessage.set(error.error?.message ?? "Login failed. Please try again.");
         }
       });
+  }
+  resetForm() : void
+  {
+    this.form.reset();
   }
 
   getDataToSend() : ICredentials
@@ -54,9 +62,6 @@ export class LoginPageComponent {
     }
   }
 
-  clickEvent(event: MouseEvent) {
-    this.hidePassword.set(!this.hidePassword());
-    event.stopPropagation();
-  }
+  
 
 }

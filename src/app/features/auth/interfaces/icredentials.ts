@@ -4,5 +4,6 @@ export interface ICredentials {
 }
 
 export interface ILoginResponse {
-    jwtToken: string;
+    token: string;
+    refreshToken: string;
 }
