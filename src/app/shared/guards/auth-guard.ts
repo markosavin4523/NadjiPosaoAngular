@@ -10,7 +10,7 @@ export class AuthGuard  {
     private router: Router,
     private authService: AuthService
   ) {}
-  canActivateChild(): boolean {
+  canActivate(): boolean {
     const loggedIn = this.authService.isAuthenticated();
     if (!loggedIn) {
       this.router.navigate(['/auth/login']);
