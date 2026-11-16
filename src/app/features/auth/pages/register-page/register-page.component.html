@@ -1,1 +1,75 @@
-<p>register-page works!</p>
+<div class="d-flex align-items-center justify-content-center min-vh-100 p-3 p-md-4 bg-body-tertiary">
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 w-100 form-width" style="max-width: 540px;">
+
+        <div class="text-center mb-4">
+            <h1 class="fw-bold mb-2">Register</h1>
+            <p class="text-body-secondary mb-0">
+                Register your account to access thousands of job listings and connect with top employers.
+            </p>
+        </div>
+
+        <form [formGroup]="form" class="d-flex flex-column gap-2">
+
+            <div class="row g-2 g-sm-3">
+                <div class="col-12 col-sm-6">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>First name</mat-label>
+                        <input matInput formControlName="firstName">
+                        <mat-error>{{ validator.getErrorMessage(form.controls.firstName, "First name") }}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12 col-sm-6">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Last name</mat-label>
+                        <input matInput formControlName="lastName">
+                        <mat-error>{{ validator.getErrorMessage(form.controls.lastName, "Last name") }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username">
+                <mat-error>{{ validator.getErrorMessage(form.controls.username, "Username") }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+                <mat-error>{{ validator.getErrorMessage(form.controls.email, "Email") }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="dateOfBirth">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error>{{ validator.getErrorMessage(form.controls.dateOfBirth, "Date") }}</mat-error>
+            </mat-form-field>
+
+            <app-password-mat-input [control]="form.controls.password" label="Password" />
+
+            <app-password-mat-input [control]="form.controls.confirmPassword" label="Confirm password" />
+
+            <button (click)="submit()" type="button" [disabled]="form.invalid"
+                class="btn btn-primary btn-lg w-100 mt-2 fw-semibold">
+                Register
+            </button>
+        </form>
+
+        <hr class="my-4 opacity-25">
+        <div class="d-flex flex-column gap-3 text-center">
+            <a routerLink="/auth/register-company" class="btn btn-outline-secondary w-100">
+                Register as a Company
+            </a>
+
+            <p class="mb-0 text-body-secondary small">
+                Already have an account?
+                <a routerLink="/auth/login" class="fw-semibold text-decoration-none">Log in</a>
+            </p>
+        </div>
+
+    </div>
+</div>
