@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserRegisterValidation } from '../../validations/user-register-validation';
+import { IRegisterUser } from '../../interfaces/i-register-user';
+import { BlRegisterUserRequestService } from '../../business-logic/register/bl-register-user-request.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -10,7 +13,11 @@ import { UserRegisterValidation } from '../../validations/user-register-validati
 })
 export class RegisterPageComponent {
 
-  constructor(public validator : UserRegisterValidation)
+  constructor(
+    public validator : UserRegisterValidation,
+    private service : BlRegisterUserRequestService,
+    private router : Router
+  )
   {
 
   }
@@ -47,6 +54,39 @@ export class RegisterPageComponent {
 
   submit() : void
   {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    const data = this.getDataToSend();
+    this.service.register(data).subscribe({
+      next : (response) => {
+        this.router.navigate(['/auth/login'], {
+        state: { message: 'Registration successfull, check your email and verify your account, activation link duration is 5 minutes.' }
+      });
+      },
+      error : (error) =>
+      {
+        console.log(error);
+        if (Array.isArray(error.error)) {
+        this.validator.setApiErrors(this.form, error.error);
+        }
+      }
+    })
 
+  }
+
+  getDataToSend() : IRegisterUser
+  {
+    const data = this.form.getRawValue();
+    return {
+        username : data.username,
+        firstName : data.firstName,
+        lastName : data.lastName,
+        dateOfBirth : data.dateOfBirth,
+        email : data.email,
+        password : data.password,
+        confirmPassword : data.confirmPassword
+    }
   }
 }

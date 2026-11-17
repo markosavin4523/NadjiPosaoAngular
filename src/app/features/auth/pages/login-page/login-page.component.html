@@ -24,7 +24,11 @@
             {{ errorMessage() }}
           </div>
         }
-        
+        @if (messageMail) {
+        <div class="alert alert-success text-center" role="alert">
+            {{ messageMail }}
+        </div>
+}
       </div>
     </div>
     <div class="col-12 col-md-6 bg-primary text-white d-flex flex-column align-items-center justify-content-center text-center p-5">

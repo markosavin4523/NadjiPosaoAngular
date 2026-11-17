@@ -17,10 +17,14 @@ export class LoginPageComponent {
     private requestService : BlLoginRequestService,
     private authService : AuthService,
     private router : Router,
-  ){}
+  ){
+    const navigation = this.router.getCurrentNavigation();
+    this.messageMail = navigation?.extras.state?.['message'] ?? '';
+  }
 
   hidePassword = signal(true);
   errorMessage = signal<string | null>(null);
+  messageMail = '';
 
   form : any = new FormGroup(
     {

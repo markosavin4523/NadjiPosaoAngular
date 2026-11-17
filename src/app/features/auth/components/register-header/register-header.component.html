@@ -1,0 +1,20 @@
+<header class="w-100 border-bottom bg-body py-3 px-3 px-md-4">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+    
+    <!-- Leva strana: dugme za povratak -->
+    <button
+      type="button"
+      (click)="goBack()"
+      class="btn text-black border-0 d-inline-flex align-items-center gap-2"
+    >
+      <mat-icon>arrow_back</mat-icon>
+      <span>Go back</span>
+    </button>
+
+    <!-- Desna strana: h1 logo -->
+    <a [routerLink]="fallbackRoute" class="text-decoration-none">
+      <h1 class="h3 fw-bold mb-0 text-primary">FindJob</h1>
+    </a>
+
+  </div>
+</header>

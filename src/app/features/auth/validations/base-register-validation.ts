@@ -1,15 +1,43 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
+import { IApiValidationError } from '../../../shared/interfaces/i-api-validation-error';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BaseRegisterValidation {
+
+  setApiErrors(form: FormGroup, errors: IApiValidationError[]): void {
+    if (!Array.isArray(errors)) {
+      return;
+    }
+
+    errors.forEach((err) => {
+      const controlName =
+        err.propertyName.charAt(0).toLowerCase() + err.propertyName.slice(1);
+
+      const control = form.get(controlName);
+
+      if (control) {
+        control.setErrors({
+          ...control.errors,
+          apiError: err.errorMessage,
+        });
+        control.markAsTouched();
+      }
+    });
+  }
+
   getErrorMessage(control : AbstractControl | null, fieldName : string) : string
   {
     if (!control || !control.errors) {
       return '';
     }
+
+    if (control.hasError('apiError')) {
+      return control.getError('apiError');
+    }
+
     if (control.hasError("required"))
     {
       return `${fieldName} is required`;

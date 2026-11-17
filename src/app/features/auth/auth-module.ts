@@ -7,6 +7,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { SharedModule } from '../../shared/shared-module';
 import { RegisterPageCompanyComponent } from './pages/register-page-company/register-page-company.component';
 import { PasswordMatInputComponent } from './components/password-mat-input/password-mat-input.component';
+import { RegisterHeaderComponent } from './components/register-header/register-header.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PasswordMatInputComponent } from './components/password-mat-input/passw
     RegisterPageComponent,
     RegisterPageCompanyComponent,
     PasswordMatInputComponent,
+    RegisterHeaderComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, SharedModule],
 })
