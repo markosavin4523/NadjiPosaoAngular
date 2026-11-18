@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { LayoutModule } from './core/layout/layout-module';
 import { SharedModule } from './shared/shared-module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { SharedModule } from './shared/shared-module';
     LayoutModule,
     SharedModule,
     NgbModule,
-    
+    HttpClientModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

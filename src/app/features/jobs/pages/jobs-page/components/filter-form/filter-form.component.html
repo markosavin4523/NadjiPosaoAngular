@@ -1,6 +1,7 @@
-<section class="w-100 bg-body-tertiary border-bottom py-3 py-md-4">
-  <div class="container-xxl px-3 px-md-4">
+<section class="w-100 bg-body-tertiary mt-3">
+  <div class="container-xxl">
     <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4">
+      <h2><mat-icon>tune</mat-icon> Filters</h2>
       <form [formGroup]="form" (ngSubmit)="apply()">
 
         <div class="row g-3">
@@ -8,7 +9,7 @@
             <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
               <mat-label>Job title or keyword</mat-label>
               <mat-icon matPrefix class="me-2 text-body-secondary">search</mat-icon>
-              <input matInput formControlName="keyword" placeholder="e.g. Angular Developer">
+              <input matInput formControlName="titleKeyword" placeholder="e.g. Angular Developer">
             </mat-form-field>
           </div>
 
@@ -74,15 +75,15 @@
 
           <div class="col-12 col-md-4 col-lg-6 d-flex justify-content-md-end gap-2">
             <button type="button" (click)="resetFilters()"
-              class="btn btn-outline-secondary px-4 py-2 d-inline-flex align-items-center justify-content-center gap-1">
+              class="btn border-0 px-4 py-2 d-inline-flex align-items-center justify-content-center gap-1">
               <mat-icon style="font-size: 20px; width: 20px; height: 20px;">restart_alt</mat-icon>
-              <span>Reset</span>
+              <span>Reset filters</span>
             </button>
 
             <button type="submit"
               class="btn btn-primary px-4 py-2 fw-semibold d-inline-flex align-items-center justify-content-center gap-2">
-              <mat-icon style="font-size: 20px; width: 20px; height: 20px;">tune</mat-icon>
-              <span>Filter Jobs</span>
+              <mat-icon style="font-size: 20px; width: 20px; height: 20px;">search</mat-icon>
+              <span>Search jobs</span>
             </button>
           </div>
         </div>

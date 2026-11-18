@@ -6,11 +6,16 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
-  getJwtToken(): string | null 
-  {
-    return localStorage.getItem("token");
+  getJwtToken(): string | null {
+    const token = localStorage.getItem('token');
+
+    if (!token || token === 'null' || token === 'undefined' || token.trim() === '') {
+      return null;
+    }
+
+    return token;
   }
 
   isAuthenticated(): boolean {
@@ -19,7 +24,7 @@ export class AuthService {
   }
 
   getUserRole(): string {
-      return this.getJwtTokenData()?.Role;
+    return this.getJwtTokenData()?.Role;
   }
 
   getJwtTokenData(): any {
@@ -31,7 +36,7 @@ export class AuthService {
   setJwtToken(token: string): void {
     localStorage.setItem("token", token);
   }
-  
+
   logout(): void {
     localStorage.removeItem("token");
     this.router.navigate(['/auth/login']);

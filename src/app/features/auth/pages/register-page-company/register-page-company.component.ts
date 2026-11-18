@@ -47,7 +47,10 @@ export class RegisterPageCompanyComponent {
       ]),
       cityId: new FormControl(null, Validators.required),
       description: new FormControl("", Validators.required),
-      password: new FormControl("", Validators.required),
+      password: new FormControl("",[
+        Validators.required,
+        Validators.minLength(6)
+      ]),
       confirmPassword: new FormControl("", Validators.required),
     },
     {

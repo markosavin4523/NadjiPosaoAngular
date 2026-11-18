@@ -9,6 +9,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { SharedRoutingModule } from './shared-routing-module';
 import { MatSelectModule } from '@angular/material/select';
+import { AuthService } from './business-logic/auth.service';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
@@ -23,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
      ReactiveFormsModule,
      MatDatepickerModule,
      MatSelectModule,
+     HttpClientModule
     ],
   exports: [
     FormsModule,
@@ -37,6 +41,12 @@ import { MatSelectModule } from '@angular/material/select';
 
   ],
   providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     provideNativeDateAdapter()
   ]
 })
