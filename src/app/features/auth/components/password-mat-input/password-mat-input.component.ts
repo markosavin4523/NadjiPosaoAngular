@@ -1,6 +1,7 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, input, Input, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BaseRegisterValidation } from '../../validations/base-register-validation';
+import { PasswordMatchValidator } from '../../../../shared/validation/password-match-validator';
+import { BaseRegisterValidationService } from '../../validations/base-register-validation.service';
 
 @Component({
   selector: 'app-password-mat-input',
@@ -10,12 +11,13 @@ import { BaseRegisterValidation } from '../../validations/base-register-validati
 })
 export class PasswordMatInputComponent {
 
-  constructor(public validator : BaseRegisterValidation){}
+  constructor(public validator : BaseRegisterValidationService){}
 
   hidePassword = signal(true);
 
   @Input({ required: true }) control!: FormControl;
-  @Input() label = 'Enter your password';
+  @Input() label : string = 'Enter your password';
+  @Input() isLogin : boolean = false;
 
   clickEvent(event: MouseEvent) {
     this.hidePassword.set(!this.hidePassword());

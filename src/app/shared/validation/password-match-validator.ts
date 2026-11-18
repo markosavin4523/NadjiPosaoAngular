@@ -1,12 +1,6 @@
-import { Injectable } from '@angular/core';
-import { BaseRegisterValidation } from './base-register-validation';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class UserRegisterValidation extends BaseRegisterValidation {
-
+export class PasswordMatchValidator {
   static passwordMatch(group: AbstractControl): ValidationErrors | null {
     const password = group.get('password')?.value;
     const confirmControl = group.get('confirmPassword');
@@ -32,15 +26,5 @@ export class UserRegisterValidation extends BaseRegisterValidation {
     }
 
     return null;
-  }
-
-  override getErrorMessage(control: AbstractControl | null, fieldName: string): string {
-    if (!control || !control.errors) {
-      return '';
-    }
-    if (control.hasError('matDatepickerMax')) {
-      return 'Date of birth cannot be in the future.';
-    }
-    return super.getErrorMessage(control, fieldName);
   }
 }

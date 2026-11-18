@@ -1,1 +1,84 @@
-<p>register-page-company works!</p>
+<app-register-header></app-register-header>
+
+<div class="d-flex align-items-center justify-content-center min-vh-100 p-3 p-md-4 bg-body-tertiary">
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 w-100 form-width" style="max-width: 540px;">
+
+        <div class="text-center mb-4">
+            <h1 class="fw-bold mb-2">Register Company</h1>
+            <p class="text-body-secondary mb-0">
+                Create a company profile to post job openings and connect with qualified candidates.
+            </p>
+        </div>
+
+        <form [formGroup]="form" class="d-flex flex-column gap-2">
+
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Company name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error>{{ validator.getErrorMessage(form.controls.name, "Company name") }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput rows="3" formControlName="description"></textarea>
+                <mat-error>{{ validator.getErrorMessage(form.controls.description, "Description") }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>City</mat-label>
+                <mat-select formControlName="cityId">
+                    @for (city of cities; track city.id) {
+                        <mat-option [value]="city.id">{{ city.name }}</mat-option>
+                    }
+                </mat-select>
+                <mat-error>{{ validator.getErrorMessage(form.controls.cityId, "City") }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address">
+                <mat-error>{{ validator.getErrorMessage(form.controls.address, "Address") }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Phone number</mat-label>
+                <input matInput type="tel" formControlName="phoneNumber">
+                <mat-error>{{ validator.getErrorMessage(form.controls.phoneNumber, "Phone number") }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username">
+                <mat-error>{{ validator.getErrorMessage(form.controls.username, "Username") }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+                <mat-error>{{ validator.getErrorMessage(form.controls.email, "Email") }}</mat-error>
+            </mat-form-field>
+
+            <app-password-mat-input [control]="form.controls.password" label="Password" />
+
+            <app-password-mat-input [control]="form.controls.confirmPassword" label="Confirm password" />
+
+            <button (click)="submit()" type="button" [disabled]="form.invalid"
+                class="btn btn-primary btn-lg w-100 mt-2 fw-semibold">
+                Register Company
+            </button>
+        </form>
+
+        <hr class="my-4 opacity-25">
+        <div class="d-flex flex-column gap-3 text-center">
+            <a routerLink="/auth/register" class="btn btn-outline-secondary w-100">
+                Register as a Job Seeker
+            </a>
+
+            <p class="mb-0 text-body-secondary small">
+                Already have an account?
+                <a routerLink="/auth/login" class="fw-semibold text-decoration-none">Log in</a>
+            </p>
+        </div>
+
+    </div>
+</div>

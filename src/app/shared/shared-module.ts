@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { SharedRoutingModule } from './shared-routing-module';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -20,7 +21,8 @@ import { SharedRoutingModule } from './shared-routing-module';
      MatButtonModule,
      MatIconModule,
      ReactiveFormsModule,
-     MatDatepickerModule
+     MatDatepickerModule,
+     MatSelectModule,
     ],
   exports: [
     FormsModule,
@@ -29,7 +31,8 @@ import { SharedRoutingModule } from './shared-routing-module';
     MatButtonModule, 
     MatIconModule,
     ReactiveFormsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatSelectModule,
     
 
   ],

@@ -1,10 +1,8 @@
-export interface IRegisterUser {
+import { IBaseRegister } from "./i-base-register";
+
+export interface IRegisterUser extends IBaseRegister{
     firstName: string,
     lastName : string,
-    username : string,
-    email : string,
     dateOfBirth : Date,
-    password : string,
-    confirmPassword : string,
 }
 

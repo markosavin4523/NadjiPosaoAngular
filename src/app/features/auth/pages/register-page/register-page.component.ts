@@ -1,20 +1,25 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserRegisterValidation } from '../../validations/user-register-validation';
 import { IRegisterUser } from '../../interfaces/i-register-user';
 import { BlRegisterUserRequestService } from '../../business-logic/register/bl-register-user-request.service';
 import { Router } from '@angular/router';
+import { PasswordMatchValidator } from '../../../../shared/validation/password-match-validator';
+import { UserRegisterValidationService } from '../../validations/user-register-validation.service';
+import { BaseValidationService } from '../../../../shared/validation/validation-messages/base-validation.service';
 
 @Component({
   selector: 'app-register-page',
   standalone: false,
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.scss',
+  providers: [
+    { provide: BaseValidationService, useClass: UserRegisterValidationService }
+  ]
 })
 export class RegisterPageComponent {
 
   constructor(
-    public validator : UserRegisterValidation,
+    public validator : BaseValidationService,
     private service : BlRegisterUserRequestService,
     private router : Router
   )
@@ -49,7 +54,7 @@ export class RegisterPageComponent {
       confirmPassword: new FormControl("", Validators.required),
       dateOfBirth: new FormControl (null, Validators.required),
     },
-    { validators : UserRegisterValidation.passwordMatch }
+    { validators : PasswordMatchValidator.passwordMatch }
   );
 
   submit() : void

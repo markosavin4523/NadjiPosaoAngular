@@ -1,0 +1,93 @@
+<section class="w-100 bg-body-tertiary border-bottom py-3 py-md-4">
+  <div class="container-xxl px-3 px-md-4">
+    <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4">
+      <form [formGroup]="form" (ngSubmit)="apply()">
+
+        <div class="row g-3">
+          <div class="col-12 col-lg-4">
+            <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+              <mat-label>Job title or keyword</mat-label>
+              <mat-icon matPrefix class="me-2 text-body-secondary">search</mat-icon>
+              <input matInput formControlName="keyword" placeholder="e.g. Angular Developer">
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-sm-6 col-lg">
+            <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+              <mat-label>Category</mat-label>
+              <mat-select formControlName="categoryId" (selectionChange)="onCategoryChange($event.value)">
+                <mat-option [value]="null">All categories</mat-option>
+                @for (category of categories; track category.id) {
+                <mat-option [value]="category.id">{{ category.name }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          @if (form.controls.categoryId.value) {
+          <div class="col-12 col-sm-6 col-lg">
+            <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+              <mat-label>Subcategory</mat-label>
+              <mat-select formControlName="subCategoryId">
+                <mat-option [value]="null">All subcategories</mat-option>
+                @for (sub of subCategories; track sub.id) {
+                <mat-option [value]="sub.id">{{ sub.name }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+          }
+
+          <div class="col-12 col-sm-6 col-lg">
+            <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+              <mat-label>City</mat-label>
+              <mat-select formControlName="cityId">
+                <mat-option [value]="null">All cities</mat-option>
+                @for (city of cities; track city.id) {
+                <mat-option [value]="city.id">{{ city.name }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row g-3 align-items-center mt-1">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+              <mat-label>Minimum salary</mat-label>
+              <mat-icon matPrefix class="me-2 text-body-secondary">payments</mat-icon>
+              <input matInput type="number" min="0" step="100" formControlName="salaryFrom" placeholder="0">
+              <span matTextSuffix class="text-body-secondary fw-semibold">EUR</span>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+              <mat-label>Sort by</mat-label>
+              <mat-select formControlName="sortBy">
+                <mat-option value="latest">Latest</mat-option>
+                <mat-option value="salary_desc">Salary: High to Low</mat-option>
+                <mat-option value="salary_asc">Salary: Low to High</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 col-md-4 col-lg-6 d-flex justify-content-md-end gap-2">
+            <button type="button" (click)="resetFilters()"
+              class="btn btn-outline-secondary px-4 py-2 d-inline-flex align-items-center justify-content-center gap-1">
+              <mat-icon style="font-size: 20px; width: 20px; height: 20px;">restart_alt</mat-icon>
+              <span>Reset</span>
+            </button>
+
+            <button type="submit"
+              class="btn btn-primary px-4 py-2 fw-semibold d-inline-flex align-items-center justify-content-center gap-2">
+              <mat-icon style="font-size: 20px; width: 20px; height: 20px;">tune</mat-icon>
+              <span>Filter Jobs</span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
