@@ -1,7 +1,7 @@
 <app-filter-form (searchSubmitted)="onSearch($event)"></app-filter-form>
 <div class="container p-2 mt-2">
     <h2>Active job positions</h2>
-    <app-jobs-list [jobs] = "jobs"></app-jobs-list>
+    <app-jobs-list [response] = "apiResponse" (pageChanged)="onPageChange($event)"></app-jobs-list>
 </div>
 
 

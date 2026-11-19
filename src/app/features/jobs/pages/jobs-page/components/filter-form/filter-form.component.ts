@@ -75,7 +75,7 @@ export class FilterFormComponent {
         city: data.cityId,
         salaryFrom: data.salaryFrom,
         sortBy: data.sortBy,
-        perPage: 10,
+        perPage: 6,
         page:1
       }
     }

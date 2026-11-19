@@ -12,6 +12,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from './business-logic/auth.service';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -26,7 +31,14 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
      ReactiveFormsModule,
      MatDatepickerModule,
      MatSelectModule,
-     HttpClientModule
+     HttpClientModule,
+     MatPaginatorModule,
+     MatCardModule,
+     MatChipsModule,
+     MatDividerModule,
+     MatDialogModule
+
+     
     ],
   exports: [
     FormsModule,
@@ -37,6 +49,11 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
     ReactiveFormsModule,
     MatDatepickerModule,
     MatSelectModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatChipsModule,
+     MatDividerModule,
+     MatDialogModule
     
 
   ],

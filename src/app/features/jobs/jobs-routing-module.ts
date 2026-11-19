@@ -3,17 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { JobsPageComponent } from './pages/jobs-page/jobs-page.component';
 import { SavedJobsPageComponent } from './pages/saved-jobs-page/saved-jobs-page.component';
 import { RoleGuard } from '../../shared/guards/role-guard';
+import { JobDetailsPageComponent } from './pages/job-details-page/job-details-page.component';
+import { flush } from '@angular/core/testing';
 
 const routes: Routes = [
-
-  {
-    path: '',
-    component: JobsPageComponent,
-    canActivate: [RoleGuard],
-    data: {
-      roles: ['User']
-    }
-  },
   {
     path: 'saved-jobs',
     component: SavedJobsPageComponent,
@@ -22,6 +15,23 @@ const routes: Routes = [
       roles: ['User']
     }
   },
+  {
+    path: ':id',
+    component: JobDetailsPageComponent,
+    canActivate: [RoleGuard],
+    data: {
+      roles: ['User']
+    }
+  }, 
+  {
+    path: '',
+    component: JobsPageComponent,
+    canActivate: [RoleGuard],
+    data: {
+      roles: ['User']
+    }
+  },
+  
   {
     path: 'create-job',
     component: JobsPageComponent,

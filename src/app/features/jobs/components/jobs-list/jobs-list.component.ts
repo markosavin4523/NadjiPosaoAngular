@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IJob } from '../../interfaces/i-job';
+import { IPagedResponse } from '../../../../shared/interfaces/i-paged-response';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-jobs-list',
@@ -8,5 +10,12 @@ import { IJob } from '../../interfaces/i-job';
   styleUrl: './jobs-list.component.scss',
 })
 export class JobsListComponent {
-  @Input() jobs : IJob[] = [];
+  @Output() pageChanged = new EventEmitter<PageEvent>();
+
+  @Input()response: IPagedResponse<IJob> | null = null;
+
+  onPageChange(event : PageEvent)
+  {
+    this.pageChanged.emit(event);
+  }
 }

@@ -1,0 +1,17 @@
+.file-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btnInputFile
+{
+    border:2px dashed rgba(0, 0, 255, 0.45);
+    border-radius: 10px;
+    height: 50px;
+}
+
+.file-status {
+  font-size: 14px;
+  opacity: 0.8;
+}

@@ -12,3 +12,9 @@ export interface IJob {
     isLiked : boolean
 
 }
+
+export interface IJobDetails extends IJob {
+    description : string;
+    companyDescription : string,
+    savesCount : number | null;
+}

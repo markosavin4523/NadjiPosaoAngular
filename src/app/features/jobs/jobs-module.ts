@@ -6,9 +6,16 @@ import { SavedJobsPageComponent } from './pages/saved-jobs-page/saved-jobs-page.
 import { FilterFormComponent } from './pages/jobs-page/components/filter-form/filter-form.component';
 import { SharedModule } from '../../shared/shared-module';
 import { JobsListComponent } from './components/jobs-list/jobs-list.component';
+import { JobDetailsPageComponent } from './pages/job-details-page/job-details-page.component';
 
 @NgModule({
-  declarations: [JobsPageComponent, SavedJobsPageComponent, FilterFormComponent, JobsListComponent],
+  declarations: [
+    JobsPageComponent,
+    SavedJobsPageComponent,
+    FilterFormComponent,
+    JobsListComponent,
+    JobDetailsPageComponent,
+  ],
   imports: [CommonModule, JobsRoutingModule, SharedModule],
 })
 export class JobsModule {}

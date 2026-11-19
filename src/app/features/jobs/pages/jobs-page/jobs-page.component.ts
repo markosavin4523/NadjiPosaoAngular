@@ -2,6 +2,9 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { BlJobsRequesnService } from '../../bussines-logic/request/bl-jobs-requesn-service';
 import { IJobsSearch } from '../../interfaces/i-jobs-search';
 import { IJob } from '../../interfaces/i-job';
+import { IPagedResponse, IPagedSearch } from '../../../../shared/interfaces/i-paged-response';
+import { PageEvent } from '@angular/material/paginator';
+import { PaginationHandler } from '../../../../shared/pagination/pagination-handler';
 
 
 @Component({
@@ -16,11 +19,15 @@ export class JobsPageComponent {
     private cdr: ChangeDetectorRef,
 
   ) { }
+  currentSearchFilters: Partial<IJobsSearch> = {};
 
-  jobs: IJob[] = [];
+  pagination = new PaginationHandler<IJobsSearch>();
+
+  apiResponse: IPagedResponse<IJob> | null = null;
 
   onSearch(filter: IJobsSearch) {
-    this.loadJobs(filter);
+    this.pagination.setFilter(filter);
+    this.loadJobs();
   }
 
   ngAfterViewInit() {
@@ -28,13 +35,17 @@ export class JobsPageComponent {
     this.loadJobs();
 
   }
+  onPageChange(event: PageEvent) {
+    this.pagination.setPage(event.pageIndex, event.pageSize);
+    this.loadJobs();
+  }
 
+  loadJobs() {
+    const requestData = this.pagination.getRequestParams();
 
-  loadJobs(filter: IJobsSearch | null = null) {
-    this.service.getAllJobs(filter).subscribe({
+    this.service.getAllJobs(requestData).subscribe({
       next: (response) => {
-        this.jobs = response.items;
-        console.log(filter);
+        this.apiResponse = response;
         this.cdr.detectChanges();
       },
       error: (err) => {
