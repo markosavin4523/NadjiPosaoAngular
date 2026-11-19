@@ -19,8 +19,15 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
+    
     const token = this.getJwtToken();
-    return !!token;
+    if (!token) return false;
+    const tokenData = this.getJwtTokenData();
+    if (!tokenData || typeof tokenData.exp !== 'number') return false;
+  
+    const expiresAtMs = tokenData.exp * 1000;
+    
+    return Date.now() < expiresAtMs;
   }
 
   getUserRole(): string {
