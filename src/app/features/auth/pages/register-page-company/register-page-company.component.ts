@@ -5,10 +5,11 @@ import { CompanyRegisterValidationService } from '../../validations/company-regi
 import { PasswordMatchValidator } from '../../../../shared/validation/password-match-validator';
 import { BaseValidationService } from '../../../../shared/validation/validation-messages/base-validation.service';
 import { ICity } from '../../../../shared/interfaces/i-city';
-import { CitiesService } from '../../../../shared/business-logic/cities.service';
+
 import { IRegisterCompany } from '../../interfaces/i-register-company';
 import { BlRegisterCompanyRequestService } from '../../business-logic/register/bl-register-company-request.service';
 import { Router } from '@angular/router';
+import { CitiesService } from '../../../../shared/business-logic/cities.service';
 
 @Component({
   selector: 'app-register-page-company',
@@ -22,7 +23,7 @@ import { Router } from '@angular/router';
 export class RegisterPageCompanyComponent {
   constructor(
     public validator: BaseValidationService,
-    private cityService: CitiesService,
+    private cityService : CitiesService,
     private registerService : BlRegisterCompanyRequestService,
     private router : Router
   ) { }

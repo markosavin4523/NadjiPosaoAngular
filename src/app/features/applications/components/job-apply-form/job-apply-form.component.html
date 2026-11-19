@@ -1,0 +1,28 @@
+<h3 mat-dialog-title class="fw-bold">Apply for the position - {{ job.title }}</h3>
+<mat-dialog-content class="mat-typography">
+    <p class="text-secondary">Complete the form to apply for this position</p>
+    <form [formGroup]="form">
+        <div class="file-picker d-flex flex-column justify-content-start align-items-start">
+            <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Message</mat-label>
+                <textarea matInput rows="5" formControlName="message"></textarea>
+                <mat-error>{{ validator.getErrorMessage(form.controls.message, "Message") }}</mat-error>
+            </mat-form-field>
+
+            <button mat-stroked-button type="button" class="w-100 m-0 btnInputFile" (click)="fileInput.click()">
+                <mat-icon>upload_file</mat-icon>
+                Add your CV
+            </button>
+            <span class="file-status">
+                {{ selectedFile ? 'chosen 1 file' : 'no file chosen' }}
+            </span>
+            <input #fileInput type="file" formControlName="cvPath" hidden (change)="onFileSelected($event)" />
+            <mat-error>{{ validator.getErrorMessage(form.controls.cvPath, "CV") }}</mat-error>
+        </div>
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="close(false)">Cancel</button>
+    <button matButton="filled" [disabled]="form.invalid" (click)="onApply()">Apply</button>
+</mat-dialog-actions>
