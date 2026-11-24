@@ -1,4 +1,17 @@
-<h3 mat-dialog-title class="fw-bold">Apply for the position - {{ job.title }}</h3>
+@if( sentMessage() )
+{
+    <div class="sent-state d-flex flex-column justify-content-center align-items-center text-center w-100 px-4">
+        <div class="success-icon-wrap d-flex justify-content-center align-items-center mb-3">
+            <mat-icon class="success-icon">task_alt</mat-icon>
+        </div>
+        <h2 class="fw-bold mb-2">Your application has been sent</h2>
+        <p class="text-secondary mb-0">
+            We have received your application for <strong>{{ job?.title }}</strong>. This window will close shortly.
+        </p>
+    </div>
+}
+@else {
+    <h3 mat-dialog-title class="fw-bold">Apply for the position - {{ job.title }}</h3>
 <mat-dialog-content class="mat-typography">
     <p class="text-secondary">Complete the form to apply for this position</p>
     <form [formGroup]="form">
@@ -16,9 +29,13 @@
             <span class="file-status">
                 {{ selectedFile ? 'chosen 1 file' : 'no file chosen' }}
             </span>
-            <input #fileInput type="file" formControlName="cvPath" hidden (change)="onFileSelected($event)" />
+            <input #fileInput type="file" formControlName="cvPath" hidden (change)="onFileSelected($event)" accept=".pdf"/>
             <mat-error>{{ validator.getErrorMessage(form.controls.cvPath, "CV") }}</mat-error>
         </div>
+        @if (errMessage())
+        {
+            <p class="text-danger">{{ errMessage() }}</p>
+        }
     </form>
 
 </mat-dialog-content>
@@ -26,3 +43,4 @@
     <button mat-button (click)="close(false)">Cancel</button>
     <button matButton="filled" [disabled]="form.invalid" (click)="onApply()">Apply</button>
 </mat-dialog-actions>
+}

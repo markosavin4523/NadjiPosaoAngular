@@ -1,9 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { from } from 'rxjs';
 import { BaseValidationService } from '../../../../shared/validation/validation-messages/base-validation.service';
 import { IJob } from '../../../jobs/interfaces/i-job';
+import { BlApplicationRequestService } from '../../business-logic/requests/bl-application-request.service';
+import { IApplicationFormData } from '../../interfaces/i-application-form-data';
 
 @Component({
   selector: 'app-job-apply-form',
@@ -14,12 +16,15 @@ import { IJob } from '../../../jobs/interfaces/i-job';
 export class JobApplyFormComponent {
 
   selectedFile: File | null = null;
+  sentMessage = signal<boolean>(false);
+  errMessage = signal<string | null>(null);
 
 
   constructor(
     private dialogRef: MatDialogRef<JobApplyFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public validator: BaseValidationService
+    public validator: BaseValidationService,
+    private service : BlApplicationRequestService,
   ) { }
 
   id : number | null = null;
@@ -37,13 +42,36 @@ export class JobApplyFormComponent {
 
   onApply()
   {
+    const dataToSend = this.getDataToSend();
+    this.service.apply(this.id ?? 0, dataToSend).subscribe({
+      next : (response) => {
+        this.sentMessage.set(true);
+        setTimeout(() => {
+          this.close(true);
+        }, 2000);
 
+      },
+      error: (err) =>{
+        this.validator.setApiErrors(this.form, err.error);
+        this.errMessage.set(err.error.message);
+    
+      }
+    })
   }
 
   ngOnInit()
   {
     this.id = this.data.id;
     this.job = this.data.job;
+  }
+
+  getDataToSend() : IApplicationFormData
+  {
+    const data = this.form.getRawValue();
+    return {
+      message : data.message,
+      cvPath : this.selectedFile
+    }
   }
 
 

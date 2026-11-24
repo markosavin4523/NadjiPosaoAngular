@@ -4,5 +4,10 @@
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
+  },
+  "/cvs": {
+    "target": "http://192.168.0.107:5044",
+    "secure": false,
+    "changeOrigin": true
   }
 }

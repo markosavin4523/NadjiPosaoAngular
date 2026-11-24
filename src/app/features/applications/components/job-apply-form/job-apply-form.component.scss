@@ -15,3 +15,23 @@
   font-size: 14px;
   opacity: 0.8;
 }
+
+.sent-state {
+  min-height: 360px; 
+  padding: 24px 16px;
+}
+
+.success-icon-wrap {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background-color: rgba(25, 135, 84, 0.12); 
+}
+
+.success-icon {
+  width: 52px;
+  height: 52px;
+  font-size: 52px;
+  line-height: 52px;
+  color: #198754; 
+}

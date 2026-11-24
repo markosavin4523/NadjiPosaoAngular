@@ -16,14 +16,6 @@ const routes: Routes = [
     }
   },
   {
-    path: ':id',
-    component: JobDetailsPageComponent,
-    canActivate: [RoleGuard],
-    data: {
-      roles: ['User']
-    }
-  }, 
-  {
     path: '',
     component: JobsPageComponent,
     canActivate: [RoleGuard],
@@ -47,7 +39,15 @@ const routes: Routes = [
     data: {
       roles: ['Company']
     }
-  }
+  },
+  {
+    path: ':id',
+    component: JobDetailsPageComponent,
+    canActivate: [RoleGuard],
+    data: {
+      roles: ['User']
+    }
+  }, 
 ];
 
 @NgModule({
