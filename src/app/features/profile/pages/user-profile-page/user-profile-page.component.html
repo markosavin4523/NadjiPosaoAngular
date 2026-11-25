@@ -1,0 +1,19 @@
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+
+      @if (userProfile(); as u) {
+        <app-user-data [u]="u"></app-user-data>
+      }
+
+      @if (companyProfile(); as c) {
+        <app-company-data [c]="c"></app-company-data>
+      }
+
+      @if (adminProfile(); as a) {
+        <app-admin-data [a]="a"></app-admin-data>
+      }
+
+    </div>
+  </div>
+</div>

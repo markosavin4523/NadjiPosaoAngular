@@ -1,0 +1,91 @@
+<div class="card profile-card border-0 rounded-4 overflow-hidden">
+          <div class="profile-banner"></div>
+
+          <div class="card-body px-4 pb-4 pt-0">
+            <div class="d-flex flex-column flex-sm-row align-items-sm-end justify-content-between gap-3 profile-header">
+              <div class="d-flex align-items-end gap-3">
+                <div class="profile-avatar d-flex align-items-center justify-content-center rounded-4 fw-bold">
+                  {{ c.name[0] }}
+                </div>
+                <div class="pb-1">
+                  <h3 class="profile-name fw-bold mb-0">{{ c.name }}</h3>
+                  <span class="profile-username">&#64;{{ c.username }}</span>
+                </div>
+              </div>
+            </div>
+
+            <hr class="profile-divider my-4">
+
+            <div class="row g-3">
+              <div class="col-12 col-sm-6">
+                <div class="info-tile p-3 rounded-3 h-100">
+                  <div class="info-label d-flex align-items-center gap-2 mb-1">
+                    <mat-icon class="info-icon">apartment</mat-icon>
+                    <span>Company Name</span>
+                  </div>
+                  <div class="info-value">{{ c.name }}</div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <div class="info-tile p-3 rounded-3 h-100">
+                  <div class="info-label d-flex align-items-center gap-2 mb-1">
+                    <mat-icon class="info-icon">alternate_email</mat-icon>
+                    <span>Username</span>
+                  </div>
+                  <div class="info-value">{{ c.username }}</div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <div class="info-tile p-3 rounded-3 h-100">
+                  <div class="info-label d-flex align-items-center gap-2 mb-1">
+                    <mat-icon class="info-icon">mail</mat-icon>
+                    <span>Email</span>
+                  </div>
+                  <div class="info-value text-break">{{ c.email }}</div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <div class="info-tile p-3 rounded-3 h-100">
+                  <div class="info-label d-flex align-items-center gap-2 mb-1">
+                    <mat-icon class="info-icon">phone</mat-icon>
+                    <span>Phone Number</span>
+                  </div>
+                  <div class="info-value">{{ c.phoneNumber }}</div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <div class="info-tile p-3 rounded-3 h-100">
+                  <div class="info-label d-flex align-items-center gap-2 mb-1">
+                    <mat-icon class="info-icon">location_on</mat-icon>
+                    <span>Address</span>
+                  </div>
+                  <div class="info-value">{{ c.address }}</div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <div class="info-tile p-3 rounded-3 h-100">
+                  <div class="info-label d-flex align-items-center gap-2 mb-1">
+                    <mat-icon class="info-icon">location_city</mat-icon>
+                    <span>City</span>
+                  </div>
+                  <div class="info-value">{{ c.city }}</div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="info-tile p-3 rounded-3 h-100">
+                  <div class="info-label d-flex align-items-center gap-2 mb-1">
+                    <mat-icon class="info-icon">description</mat-icon>
+                    <span>Description</span>
+                  </div>
+                  <div class="info-value fw-normal">{{ c.description }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
