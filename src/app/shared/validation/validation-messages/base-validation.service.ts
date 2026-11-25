@@ -11,8 +11,7 @@ export class BaseValidationService {
     }
 
     errors.forEach((err) => {
-      const controlName =
-        err.propertyName.charAt(0).toLowerCase() + err.propertyName.slice(1);
+      const controlName = err.propertyName.charAt(0).toLowerCase() + err.propertyName.slice(1);
       const control = form.get(controlName);
 
       if (control) {

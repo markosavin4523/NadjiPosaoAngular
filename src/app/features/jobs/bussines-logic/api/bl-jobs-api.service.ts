@@ -5,6 +5,7 @@ import { IJob, IJobDetails } from '../../interfaces/i-job';
 import { IJobsSearch } from '../../interfaces/i-jobs-search';
 import { IPagedResponse, IPagedSearch } from '../../../../shared/interfaces/i-paged-response';
 import { buildHttpParams } from '../../../../shared/helpers/http-params-helper';
+import { ICreateJob } from '../../interfaces/i-create-job';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +40,11 @@ export class BlJobsApiService {
     }
     return this.http.delete(`/api/jobposition/${id}/save`);
     
+  }
+
+  create(data : ICreateJob) : Observable<any>
+  {
+    return this.http.post("/api/jobposition", data);
   }
 
   

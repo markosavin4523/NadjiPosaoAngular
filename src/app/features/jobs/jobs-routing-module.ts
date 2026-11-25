@@ -5,6 +5,8 @@ import { SavedJobsPageComponent } from './pages/saved-jobs-page/saved-jobs-page.
 import { RoleGuard } from '../../shared/guards/role-guard';
 import { JobDetailsPageComponent } from './pages/job-details-page/job-details-page.component';
 import { flush } from '@angular/core/testing';
+import { CreateJobPageComponent } from './pages/create-job-page/create-job-page.component';
+import { MyJobsPageComponent } from './pages/my-jobs-page/my-jobs-page.component';
 
 const routes: Routes = [
   {
@@ -23,10 +25,9 @@ const routes: Routes = [
       roles: ['User']
     }
   },
-  
   {
     path: 'create-job',
-    component: JobsPageComponent,
+    component: CreateJobPageComponent,
     canActivate: [RoleGuard],
     data: {
       roles: ['Company']
@@ -34,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'my-jobs',
-    component: JobsPageComponent,
+    component: MyJobsPageComponent,
     canActivate: [RoleGuard],
     data: {
       roles: ['Company']

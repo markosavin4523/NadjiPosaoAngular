@@ -7,6 +7,8 @@ import { FilterFormComponent } from './pages/jobs-page/components/filter-form/fi
 import { SharedModule } from '../../shared/shared-module';
 import { JobsListComponent } from './components/jobs-list/jobs-list.component';
 import { JobDetailsPageComponent } from './pages/job-details-page/job-details-page.component';
+import { MyJobsPageComponent } from './pages/my-jobs-page/my-jobs-page.component';
+import { CreateJobPageComponent } from './pages/create-job-page/create-job-page.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { JobDetailsPageComponent } from './pages/job-details-page/job-details-pa
     FilterFormComponent,
     JobsListComponent,
     JobDetailsPageComponent,
+    MyJobsPageComponent,
+    CreateJobPageComponent,
   ],
   imports: [CommonModule, JobsRoutingModule, SharedModule],
 })

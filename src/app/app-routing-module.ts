@@ -5,6 +5,8 @@ import { AuthLayoutComponent } from './core/layout/components/auth-layout/auth-l
 import { AuthGuard } from './shared/guards/auth-guard';
 import { GuestGuard } from './shared/guards/guest-guard';
 import { HomeRedirectGuard } from './shared/guards/home-redirect-guard';
+import { UserProfilePageComponent } from './features/profile/pages/user-profile-page/user-profile-page.component';
+import { RoleGuard } from './shared/guards/role-guard';
 
 const routes: Routes = [
   {
@@ -25,7 +27,13 @@ const routes: Routes = [
       {
         path: 'applications',
         loadChildren: () => import('./features/applications/applications-module').then(m => m.ApplicationsModule)
-      }
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./features/profile/profile-module').then(m => m.ProfileModule),
+        
+      },
+
     ]
   },
   {

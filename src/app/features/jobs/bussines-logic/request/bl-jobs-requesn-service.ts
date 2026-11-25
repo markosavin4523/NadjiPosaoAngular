@@ -7,6 +7,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { BlCategoriesRequestService } from '../../../admin-panel/categories/business-logic/requests/bl-categories-request.service';
 import { BlCategoriesApiService } from '../../../admin-panel/categories/business-logic/api/bl-categories-api.service';
 import { CitiesService } from '../../../../shared/business-logic/cities.service';
+import { ICreateJob } from '../../interfaces/i-create-job';
 
 
 @Injectable({
@@ -47,5 +48,10 @@ export class BlJobsRequesnService {
    toggleSave(id : number, isSave : boolean) : Observable<any>
    {
     return this.apiService.toggleSave(id,isSave);
+   }
+   
+   create(data : ICreateJob) : Observable<any>
+   {
+    return this.apiService.create(data);
    }
 }
