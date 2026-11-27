@@ -1,1 +1,53 @@
-<p>users-page works!</p>
+<h1>Users</h1>
+
+<form [formGroup]="form">
+    <div class="w-100">
+            <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+              <mat-label>Search by username</mat-label>
+              <mat-icon matPrefix class="me-2 text-body-secondary">search</mat-icon>
+              <input (change)="onSearch()" matInput formControlName="username">
+            </mat-form-field>
+    </div>
+</form>
+
+<table mat-table [dataSource]="dataSource" class="common-table table-wrapper mt-4">
+  @for (column of tableService.columns; track column.index) {
+    <ng-container [matColumnDef]="column.index">
+      <th mat-header-cell *matHeaderCellDef>{{ column.title }}</th>
+      <td mat-cell *matCellDef="let element">
+        
+        @if (column.index == "createdAt")
+        {
+            {{ element[column.index] | date:'dd.MM.yyyy HH:mm:ss'}}
+        }
+        @else if (column.index === 'useCaseData') {
+            <div class="data-to-send-scroll">
+              {{ element[column.index] }}
+            </div>
+          }
+          @else if (column.columnType === columnTypeEnum.action) {
+            <button mat-raised-button (click)="ban(element)">
+                {{
+                    element[column.index] ? "Activate" : "Ban"
+                }}
+            </button>
+          } @else {
+            {{ element[column.index] }}
+          }
+          
+      </td>
+    </ng-container>
+  }
+
+  <tr mat-header-row *matHeaderRowDef="tableService.displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: tableService.displayedColumns;"></tr>
+</table>
+
+<mat-paginator
+  [length]="response?.totalCount ?? 0"
+  [pageSize]="response?.perPage ?? 10"
+  [pageIndex]="response ? response.currentPage - 1 : 0"
+  [pageSizeOptions]="[6, 10, 20]"
+  (page)="onPageChange($event)"
+  aria-label="Select page"
+></mat-paginator>

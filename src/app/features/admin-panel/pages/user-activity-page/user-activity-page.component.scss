@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+::ng-deep table.mat-mdc-table.fixed-table {
+  width: 100% !important;
+  max-width: 100% !important;
+  table-layout: fixed !important;
+}
+
+::ng-deep table.mat-mdc-table.fixed-table .mat-mdc-cell,
+::ng-deep table.mat-mdc-table.fixed-table .mat-mdc-header-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+::ng-deep table.mat-mdc-table.fixed-table .mat-column-dataToSend {
+  width: 260px !important;
+  min-width: 260px !important;
+  max-width: 260px !important;
+}
+
+.data-to-send-scroll {
+  width: 100%;
+  max-width: 100%;
+  max-height: 70px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: monospace;
+  font-size: 12px;
+}

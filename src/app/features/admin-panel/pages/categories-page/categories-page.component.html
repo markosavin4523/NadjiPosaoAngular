@@ -1,1 +1,36 @@
-<p>categories-page works!</p>
+<h1>Categories</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-4">
+  <div class="d-flex flex-column gap-3" style="max-width: 420px;">
+    <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+      <mat-label>Category name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter category name">
+        <mat-error>{{ validator.getErrorMessage(form.controls.name, "Name") }}</mat-error>
+
+    </mat-form-field>
+    <span class="m-0 text-secondary">Parent category (optional — leave blank for root)</span>
+    <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+      <mat-label>Parent category</mat-label>
+      <mat-select formControlName="parentId">
+        <mat-option [value]="null">None (Root)</mat-option>
+        @for (category of rootCategories; track category.id) {
+          <mat-option [value]="category.id">{{ category.name }}</mat-option>
+        }
+      </mat-select>
+      <mat-error>{{ validator.getErrorMessage(form.controls.parentId, "Parent category") }}</mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="form.invalid"
+    >
+      Add category
+    </button>
+
+    @if (message) {
+      <div class="text-success">{{ message }}</div>
+    }
+  </div>
+</form>

@@ -8,7 +8,11 @@ import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { CategoriesPageComponent } from './pages/categories-page/categories-page.component';
 
 @NgModule({
-  declarations: [UserActivityPageComponent, UsersPageComponent, CategoriesPageComponent],
+  declarations: [
+    UserActivityPageComponent,
+    UsersPageComponent,
+    CategoriesPageComponent,
+  ],
   imports: [CommonModule, AdminPanelRoutingModule, SharedModule],
 })
 export class AdminPanelModule {}

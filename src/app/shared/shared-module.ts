@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [ConfirmDialogComponent, SpinnerComponent],
@@ -41,6 +42,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MatDividerModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatTableModule
   ],
   exports: [
     FormsModule,
@@ -57,6 +59,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MatDividerModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatTableModule,
   ],
   providers: [
     AuthService,
