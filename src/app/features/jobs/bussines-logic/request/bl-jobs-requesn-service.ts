@@ -8,6 +8,7 @@ import { BlCategoriesRequestService } from '../../../admin-panel/categories/busi
 import { BlCategoriesApiService } from '../../../admin-panel/categories/business-logic/api/bl-categories-api.service';
 import { CitiesService } from '../../../../shared/business-logic/cities.service';
 import { ICreateJob } from '../../interfaces/i-create-job';
+import { ICandidate } from '../../../applications/interfaces/i-candidate';
 
 
 @Injectable({
@@ -36,6 +37,11 @@ export class BlJobsRequesnService {
     return this.apiService.getOneJob(id);
    }
 
+   getOnJobCompany(id : number) : Observable<IJobDetails>
+   {
+    return this.apiService.getOnJobCompany(id);
+   }
+
    getAallFilterFormDropdownData() : Observable<any>
    {
      const requests: any = [
@@ -45,13 +51,28 @@ export class BlJobsRequesnService {
     return forkJoin(requests);
    }
 
+   getMyJobs(data : IPagedSearch) : Observable<IPagedResponse<IJob>>
+   {
+    return this.apiService.getMyJobs(data);
+   }
+
    toggleSave(id : number, isSave : boolean) : Observable<any>
    {
     return this.apiService.toggleSave(id,isSave);
    }
-   
+
    create(data : ICreateJob) : Observable<any>
    {
     return this.apiService.create(data);
+   }
+
+   close(id : number) : Observable<any>
+   {
+    return this.apiService.close(id);
+   }
+
+   getCandidates(id : number , data : IPagedSearch) : Observable<IPagedResponse<ICandidate>>
+   {
+    return this.apiService.getCandidates(id, data);
    }
 }

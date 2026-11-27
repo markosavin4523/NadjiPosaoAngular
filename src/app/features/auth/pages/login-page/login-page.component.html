@@ -15,8 +15,15 @@
           </mat-form-field>
 
           <app-password-mat-input [control]="form.controls.password" [isLogin]="true"/>
+          
 
-          <button (click)="submit()" type="button" [disabled]="form.invalid" class="btn btn-primary w-100">Login</button>
+          <button (click)="submit()" type="button" [disabled]="form.invalid || isLoading" class="btn btn-primary w-100 btn btn-primary w-100 d-flex justify-content-center align-items-center">
+            @if (isLoading) {
+            <mat-spinner diameter="25" class="btn-spinner"></mat-spinner>
+            } @else {
+            <span>Apply</span>
+            }
+          </button>
         </form>
         @if (errorMessage())
         {

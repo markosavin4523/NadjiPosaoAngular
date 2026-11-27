@@ -28,6 +28,7 @@ export class RegisterPageComponent {
   }
 
   maxDate : Date = new Date();
+  isLoading : boolean = false;
 
   form : any = new FormGroup(
     {
@@ -59,6 +60,9 @@ export class RegisterPageComponent {
 
   submit() : void
   {
+    if (this.isLoading) return;
+    this.isLoading = true;
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -68,7 +72,9 @@ export class RegisterPageComponent {
       next : (response) => {
         this.router.navigate(['/auth/login'], {
         state: { message: 'Registration successfull, check your email and verify your account, activation link duration is 5 minutes.' }
+        
       });
+      this.isLoading = false;
       },
       error : (error) =>
       {
@@ -76,6 +82,7 @@ export class RegisterPageComponent {
         if (Array.isArray(error.error)) {
         this.validator.setApiErrors(this.form, error.error);
         }
+        this.isLoading = false;
       }
     })
 

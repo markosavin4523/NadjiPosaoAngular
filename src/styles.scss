@@ -14,3 +14,13 @@ html {
     density: 0,
   ));
 }
+
+button .btn-spinner circle,
+.mat-mdc-progress-spinner.btn-spinner circle {
+  stroke: #ffffff !important;
+}
+
+button .btn-spinner-black circle,
+.mat-mdc-progress-spinner.btn-spinner-black circle {
+  stroke: #0a0a0a !important;
+}

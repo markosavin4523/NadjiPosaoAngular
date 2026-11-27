@@ -1,0 +1,92 @@
+.candidates-dialog {
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+}
+
+.dialog-header {
+  background-color: #ffffff;
+}
+
+.dialog-body {
+  background-color: #f8f9fa;
+  overflow-y: auto;
+}
+
+.candidate-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  }
+}
+
+.avatar-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+  color: #3730a3;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.meta-icon {
+  font-size: 15px;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+}
+
+.candidate-message {
+  background-color: #f8fafc;
+  border-left: 3px solid #cbd5e1;
+  font-style: italic;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: #f1f5f9;
+  color: #475569;
+
+  &.status-pending {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+
+  &.status-accepted {
+    background-color: #dcfce7;
+    color: #166534;
+  }
+
+  &.status-rejected {
+    background-color: #fee2e2;
+    color: #991b1b;
+  }
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.green{
+    background-color: rgb(0, 178, 0) !important;
+}
+
+.empty-icon {
+  font-size: 44px;
+  width: 44px;
+  height: 44px;
+  color: #94a3b8;
+}

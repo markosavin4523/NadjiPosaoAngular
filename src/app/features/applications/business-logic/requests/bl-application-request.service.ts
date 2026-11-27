@@ -17,4 +17,10 @@ export class BlApplicationRequestService {
   getMyApplication(data: IPagedSearch): Observable<IPagedResponse<IApplication>> {
     return this.service.getMyApplication(data); 
   }
+
+  chooseCandidate(pid : number, aid : number) : Observable<any>
+  { 
+    return this.service.chooseCandidate(pid,aid);
+  }
 }
+ 

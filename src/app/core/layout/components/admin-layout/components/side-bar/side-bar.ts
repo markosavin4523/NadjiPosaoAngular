@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../../../../../shared/business-logic/auth.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -6,4 +7,10 @@ import { Component } from '@angular/core';
   templateUrl: './side-bar.html',
   styleUrl: './side-bar.scss',
 })
-export class SideBar {}
+export class SideBar {
+  constructor(private authService : AuthService){}
+  isGroupOpen = true;
+  logout(): void {
+    this.authService.logout();
+  }
+}

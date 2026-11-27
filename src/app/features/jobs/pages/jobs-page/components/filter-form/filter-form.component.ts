@@ -89,7 +89,7 @@ export class FilterFormComponent {
         
       },
       error: (err) => {
-
+        console.log(err);
       }
     })
   }

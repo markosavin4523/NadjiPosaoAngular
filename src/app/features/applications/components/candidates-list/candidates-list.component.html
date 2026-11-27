@@ -1,0 +1,102 @@
+<div class="candidates-dialog">
+    <!-- Header -->
+    <div class="dialog-header d-flex align-items-center justify-content-between px-4 py-3 border-bottom">
+        <div>
+            <h2 mat-dialog-title class="m-0 fw-semibold fs-5">
+                Candidates ({{ candidates.items.length }})
+            </h2>
+
+        </div>
+
+        <button mat-icon-button type="button" aria-label="Zatvori dijalog" (click)="close()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <mat-dialog-content class="dialog-body px-4 py-3 m-0">
+        @if (isLoading) {
+        <div class="text-center py-5">
+            <p class="text-muted small mb-0">Loading candidates...</p>
+        </div>
+        }
+        @else if (candidates.items.length === 0) {
+        <div class="empty-state text-center py-5">
+            <mat-icon class="empty-icon mb-2">group_off</mat-icon>
+            <p class="fw-medium mb-1">No candidates</p>
+        </div>
+        } @else {
+        <div class="d-flex flex-column gap-3">
+            @for (candidate of candidates.items; track candidate.id) {
+            <div class="candidate-card p-3 rounded-3">
+
+                <div class="d-flex flex-wrap align-items-start justify-content-between gap-2 mb-2">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="avatar-circle d-flex align-items-center justify-content-center fw-semibold">
+                            {{ candidate.firstName[0] }}{{ candidate.lastName[0] }}
+                        </div>
+
+                        <div>
+                            <div class="d-flex align-items-center gap-2 flex-wrap">
+                                <span class="fw-semibold fs-6 text-dark">
+                                    {{ candidate.firstName }} {{ candidate.lastName }}
+                                </span>
+                                <span class="text-muted small">• {{ candidate.age }} yo.</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap gap-3 text-muted small mt-1">
+                                <span class="d-inline-flex align-items-center gap-1">
+                                    <mat-icon class="meta-icon">mail</mat-icon>
+                                    {{ candidate.email }}
+                                </span>
+                                <span class="d-inline-flex align-items-center gap-1">
+                                    <mat-icon class="meta-icon">schedule</mat-icon>
+                                    {{ candidate.createdAt }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span class="status-badge" [class.status-pending]="candidate.status === 'U Obradi'"
+                        [class.status-accepted]="candidate.status === 'Prihvacen'"
+                        [class.status-rejected]="candidate.status === 'Odbijen'">
+                        {{ candidate.status }}
+                    </span>
+                </div>
+
+                @if (candidate.message) {
+                <p class="small text-secondary mb-3 p-2 px-3">
+                    "{{ candidate.message }}”
+                </p>
+                }
+
+                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 pt-2">
+                    <a mat-stroked-button type="button" class="action-btn" [href]="candidate.cv" target="_blank">
+                        <mat-icon>description</mat-icon>
+                        View CV
+                    </a>
+
+                    @if (candidate.status == 'U obradi') {
+                    <button mat-flat-button type="button"
+                        class="action-btn green d-flex justify-content-center align-items-center" [disabled]="isLoadingSubmit"
+                        (click)="onChooseCandidate(candidate.id)">
+                        @if (isLoadingSubmit) {
+                        <mat-spinner diameter="25" class="btn-spinner"></mat-spinner>
+                        } @else {
+                        
+                        <span>Choose candidate</span>
+                        }
+                    </button>
+
+
+                    }
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end" class="px-4 py-3 border-top m-0">
+        <button mat-button type="button" (click)="close()">Zatvori</button>
+    </mat-dialog-actions>
+</div>

@@ -1,1 +1,102 @@
-<p>create-job-page works!</p>
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+
+      <div class="card job-card border-0 rounded-4 overflow-hidden">
+        <div class="job-banner"></div>
+
+        <div class="card-body px-4 pb-4 pt-0">
+          <div class="d-flex flex-column flex-sm-row align-items-sm-end justify-content-between gap-3 job-header">
+            <div class="d-flex align-items-end gap-3">
+              <div class="p-2">
+                <h3 class="job-title fw-bold mb-0 pt-3">Create job</h3>
+                <span class="job-subtitle">Fill in job details, salary range, deadline, and category</span>
+              </div>
+            </div>
+          </div>
+
+          <hr class="job-divider my-4">
+
+          <form [formGroup]="form" (ngSubmit)="apply()" class="d-flex flex-column gap-2" novalidate>
+
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="title">
+              <mat-error>{{ validator.getErrorMessage(form.controls.title, "Title") }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Description</mat-label>
+              <textarea matInput rows="4" formControlName="description"></textarea>
+              <mat-error>{{ validator.getErrorMessage(form.controls.description, "Description") }}</mat-error>
+            </mat-form-field>
+
+            <div class="row g-2">
+              <div class="col-12 col-sm-6">
+                <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+                  <mat-label>Category</mat-label>
+                  <mat-select formControlName="categoryId" (selectionChange)="onCategoryChange($event.value)">
+                    <mat-option [value]="null">Select category</mat-option>
+                    @for (category of categories; track category.id) {
+                      <mat-option [value]="category.id">{{ category.name }}</mat-option>
+                    }
+                  </mat-select>
+                  <mat-error>{{ validator.getErrorMessage(form.controls.categoryId, "Category") }}</mat-error>
+                </mat-form-field>
+              </div>
+
+              @if (form.controls.categoryId.value) {
+                <div class="col-12 col-sm-6">
+                  <mat-form-field class="w-100" appearance="fill" subscriptSizing="dynamic">
+                    <mat-label>Subcategory</mat-label>
+                    <mat-select formControlName="subCategoryId">
+                      <mat-option [value]="null">All subcategories</mat-option>
+                      @for (sub of subCategories; track sub.id) {
+                        <mat-option [value]="sub.id">{{ sub.name }}</mat-option>
+                      }
+                    </mat-select>
+                    <mat-error>{{ validator.getErrorMessage(form.controls.subCategoryId, "Subcategory") }}</mat-error>
+                  </mat-form-field>
+                </div>
+              }
+            </div>
+
+            <div class="row g-2 mt-2">
+              <div class="col-12 col-sm-6">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Salary from</mat-label>
+                  <input matInput type="number" formControlName="salaryFrom">
+                  <mat-error>{{ validator.getErrorMessage(form.controls.salaryFrom, "Salary from") }}</mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-12 col-sm-6">
+                <mat-form-field class="w-100" appearance="fill">
+                  <mat-label>Salary to</mat-label>
+                  <input matInput type="number" formControlName="salaryTo">
+                  <mat-error>{{ validator.getErrorMessage(form.controls.salaryTo, "Salary to") }}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <mat-form-field class="w-100" appearance="fill">
+              <mat-label>Deadline</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="deadline">
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error>{{ validator.getErrorMessage(form.controls.deadline, "Deadline") }}</mat-error>
+            </mat-form-field>
+
+            <div class="d-flex justify-content-end gap-2 mt-3">
+              <button mat-flat-button color="primary" type="submit" class="submit-btn px-4 rounded-3" [disabled]="form.invalid">
+                Create job
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

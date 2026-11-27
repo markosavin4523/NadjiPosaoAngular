@@ -11,7 +11,7 @@
     </div>
 }
 @else {
-    <h3 mat-dialog-title class="fw-bold">Apply for the position - {{ job.title }}</h3>
+<h3 mat-dialog-title class="fw-bold">Apply for the position - {{ job.title }}</h3>
 <mat-dialog-content class="mat-typography">
     <p class="text-secondary">Complete the form to apply for this position</p>
     <form [formGroup]="form">
@@ -41,6 +41,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button (click)="close(false)">Cancel</button>
-    <button matButton="filled" [disabled]="form.invalid" (click)="onApply()">Apply</button>
+    <button mat-flat-button [disabled]="form.invalid" (click)="onApply()">Apply</button>
 </mat-dialog-actions>
 }

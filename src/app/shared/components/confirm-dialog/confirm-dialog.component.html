@@ -1,0 +1,15 @@
+
+<h2 mat-dialog-title>Confirmation</h2>
+
+<mat-dialog-content>
+  <p class="mb-0">{{ data.question }}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="gap-2">
+  <button mat-button type="button" (click)="onClose()">
+    {{ data.closeText || 'Close' }}
+  </button>
+  <button mat-flat-button color="primary" type="button" (click)="onConfirm()">
+    {{ data.confirmText }}
+  </button>
+</mat-dialog-actions>

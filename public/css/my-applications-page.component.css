@@ -31,20 +31,20 @@
 }
 
 .status-pending {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
   border: 1px solid #fde68a;
 }
 
 .status-accepted {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: #dcfce7 !important;
+  color: #166534 !important;
   border: 1px solid #bbf7d0;
 }
 
 .status-rejected {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
   border: 1px solid #fecaca;
 }
 

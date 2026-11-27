@@ -7,7 +7,7 @@
     </div>
     } @else {
     @for(job of response.items; track job.id) {
-    <a [routerLink]="['/jobs', job.id]" class="job-card p-4 bg-white position-relative text-decoration-none">
+    <a [routerLink]="[isUser ? '/jobs' : '/jobs/my-jobs', job.id]" class="job-card p-4 bg-white position-relative text-decoration-none">
         <div class="row align-items-center">
             <div class="col-12 col-md-9">
                 <div class="d-flex align-items-center gap-2 mb-1 text-muted small">
@@ -36,7 +36,7 @@
             </div>
             <div class="col-12 col-md-3 text-md-end mt-3 mt-md-0">
                 <button class="btn btn-primary px-4 rounded-pill fw-medium">
-                    Apply now
+                    {{ isUser ? "Apply now" : "View" }}
                 </button>
             </div>
         </div>

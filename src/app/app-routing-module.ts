@@ -7,6 +7,7 @@ import { GuestGuard } from './shared/guards/guest-guard';
 import { HomeRedirectGuard } from './shared/guards/home-redirect-guard';
 import { UserProfilePageComponent } from './features/profile/pages/user-profile-page/user-profile-page.component';
 import { RoleGuard } from './shared/guards/role-guard';
+import { AdminLayout } from './core/layout/components/admin-layout/admin-layout';
 
 const routes: Routes = [
   {
@@ -31,9 +32,24 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: () => import('./features/profile/profile-module').then(m => m.ProfileModule),
-        
+
       },
 
+    ]
+  },
+  {
+    path: 'admin-panel',
+    component: AdminLayout,
+
+    children: [
+      {
+        path: "",
+        loadChildren: () => import('./features/admin-panel/admin-panel-module').then(m => m.AdminPanelModule),
+        canActivate: [AuthGuard, RoleGuard],
+    data: {
+      roles: ['Admin']
+    },
+      }
     ]
   },
   {

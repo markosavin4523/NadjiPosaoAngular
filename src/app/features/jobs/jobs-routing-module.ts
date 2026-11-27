@@ -7,6 +7,7 @@ import { JobDetailsPageComponent } from './pages/job-details-page/job-details-pa
 import { flush } from '@angular/core/testing';
 import { CreateJobPageComponent } from './pages/create-job-page/create-job-page.component';
 import { MyJobsPageComponent } from './pages/my-jobs-page/my-jobs-page.component';
+import { CompanyJobDetailsPageComponent } from './pages/company-job-details-page/company-job-details-page.component';
 
 const routes: Routes = [
   {
@@ -39,7 +40,16 @@ const routes: Routes = [
     canActivate: [RoleGuard],
     data: {
       roles: ['Company']
-    }
+    },
+
+  },
+  {
+    path: 'my-jobs/:id',
+    component: CompanyJobDetailsPageComponent,
+    canActivate: [RoleGuard],
+    data: { 
+      roles: ['Company']
+     },
   },
   {
     path: ':id',
@@ -48,11 +58,11 @@ const routes: Routes = [
     data: {
       roles: ['User']
     }
-  }, 
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class JobsRoutingModule {}
+export class JobsRoutingModule { }

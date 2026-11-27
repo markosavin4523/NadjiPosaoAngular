@@ -1,9 +1,7 @@
 import { Component, Inject, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { from } from 'rxjs';
 import { BaseValidationService } from '../../../../shared/validation/validation-messages/base-validation.service';
-import { IJob } from '../../../jobs/interfaces/i-job';
 import { BlApplicationRequestService } from '../../business-logic/requests/bl-application-request.service';
 import { IApplicationFormData } from '../../interfaces/i-application-form-data';
 

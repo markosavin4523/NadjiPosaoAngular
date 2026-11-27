@@ -29,6 +29,7 @@ export class RegisterPageCompanyComponent {
   ) { }
 
   cities: ICity[] = [];
+  isLoading : boolean = false;
 
   form: any = new FormGroup(
     {
@@ -60,18 +61,22 @@ export class RegisterPageCompanyComponent {
   );
 
   ngOnInit() {
+
     this.cityService.getAll().subscribe({
       next: (response) => {
         this.cities = response;
         console.log(this.cities);
+        this.isLoading = false
       },
       error: (err) => {
-
+        this.isLoading = false;
       }
     })
   }
 
   submit() {
+     if (this.isLoading) return;
+    this.isLoading = true;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;

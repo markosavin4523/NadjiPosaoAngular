@@ -46,11 +46,11 @@ export class MyApplicationsPageComponent {
 
   getStatusClass(status: string): string {
     switch (status?.toLowerCase()) {
-      case 'Prihvacen':
+      case 'prihvacen':
         return 'status-accepted';
-      case 'Odbijen':
+      case 'odbijen':
         return 'status-rejected';
-      case 'U obradi':
+      case 'u obradi':
       default:
         return 'status-pending';
     }

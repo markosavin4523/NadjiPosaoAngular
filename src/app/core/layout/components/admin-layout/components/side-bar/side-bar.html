@@ -1,1 +1,30 @@
-<p>side-bar works!</p>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-brand">
+      Admin panel
+    </div>
+  </div>
+
+  <ul class="sidebar-nav">
+    <li class="nav-title">Users</li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" routerLink="/admin-panel">User activity</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" routerLink="/admin-panel/users">Users</a>
+    </li>
+
+    <li class="nav-title">Categories</li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLinkActive="active" routerLink="/admin-panel/categories">Add category</a>
+    </li>
+
+  </ul>
+
+  <div class="sidebar-footer">
+    <button type="button" (click)="logout()" class="btn btn-primary w-100">logout</button>
+  </div>
+</div>

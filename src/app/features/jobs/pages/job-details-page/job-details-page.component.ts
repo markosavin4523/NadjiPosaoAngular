@@ -4,6 +4,7 @@ import { BlJobsRequesnService } from '../../bussines-logic/request/bl-jobs-reque
 import { IJobDetails } from '../../interfaces/i-job';
 import { MatDialog } from '@angular/material/dialog';
 import { JobApplyFormComponent } from '../../../applications/components/job-apply-form/job-apply-form.component';
+import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-job-details-page',
@@ -56,11 +57,7 @@ export class JobDetailsPageComponent implements OnInit {
       }
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if(result === true) {
-    //     this.getAllData();
-    //   }
-    // });
+    
   }
 
   onToggleSave()
@@ -78,16 +75,4 @@ export class JobDetailsPageComponent implements OnInit {
     })
   }
 
-  formatSalary(job: IJobDetails): string {
-    if (job.salaryFrom != null && job.salaryTo != null) {
-      return `${job.salaryFrom} - ${job.salaryTo} EUR`;
-    }
-    if (job.salaryFrom != null) {
-      return `Od ${job.salaryFrom} EUR`;
-    }
-    if (job.salaryTo != null) {
-      return `Do ${job.salaryTo} EUR`;
-    }
-    return 'Po dogovoru';
-  }
 }

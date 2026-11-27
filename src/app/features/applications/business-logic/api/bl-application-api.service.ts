@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IPagedResponse, IPagedSearch } from '../../../../shared/interfaces/i-paged-response';
 import { IApplication } from '../../interfaces/i-application';
 import { buildHttpParams } from '../../../../shared/helpers/http-params-helper';
+import { ICandidate } from '../../interfaces/i-candidate';
 
 @Injectable({
   providedIn: 'root',
@@ -29,4 +30,11 @@ export class BlApplicationApiService {
     const params = buildHttpParams(data);
     return this.http.get<IPagedResponse<IApplication>>("/api/jobapplication" , {params});
   }
+
+  chooseCandidate(pid : number, aid : number) : Observable<any>
+  {
+    return this.http.post(`/api/myjobposition/${pid}/candidates/${aid}`, {});
+  }
+
+  
 }

@@ -18,6 +18,10 @@ export class HomeRedirectGuard implements CanActivate {
       return this.router.createUrlTree(['/jobs/my-jobs']);
     }
 
+    if (userRole === 'Admin'){
+      return this.router.createUrlTree(["/admin-panel"])
+    }
+
     return this.router.createUrlTree(['/jobs']);
   }
 }

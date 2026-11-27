@@ -1,1 +1,15 @@
-<p>my-jobs-page works!</p>
+
+<h1 class="mt-3 bm-2">My job positions</h1>
+
+@if (isLoading)
+{
+    <div class="w-100 mt-5 d-flex justify-content-center align-items-center">
+        <mat-spinner diameter="50" class="btn-spinner-black"></mat-spinner>
+    </div>
+    
+}
+@else {
+    <app-jobs-list [response] = "apiResponse" (pageChanged)="onPageChange($event)" [isUser]="false"></app-jobs-list>
+
+}
+

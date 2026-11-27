@@ -14,6 +14,8 @@ export class JobsListComponent {
 
   @Input()response: IPagedResponse<IJob> | null = null;
 
+  @Input() isUser : boolean = true;
+
   onPageChange(event : PageEvent)
   {
     this.pageChanged.emit(event);
