@@ -40,15 +40,14 @@ const routes: Routes = [
   {
     path: 'admin-panel',
     component: AdminLayout,
-
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      roles: ['Admin']
+    },
     children: [
       {
         path: "",
         loadChildren: () => import('./features/admin-panel/admin-panel-module').then(m => m.AdminPanelModule),
-        canActivate: [AuthGuard, RoleGuard],
-    data: {
-      roles: ['Admin']
-    },
       }
     ]
   },
